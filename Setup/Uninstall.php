@@ -44,10 +44,27 @@ class Uninstall implements UninstallInterface
     public function uninstall(SchemaSetupInterface $setup, ModuleContextInterface $context)
     {
         $setup->startSetup();
-        $this->removeConfig();	
+        
+        $this->removeTables($setup);
+        $this->removeConfig();
+        
         $setup->endSetup();
     }
-
+    
+    /**
+     * Remove Tables
+	 *
+     * @param SchemaSetupInterface $setup
+     * @return void
+     */
+    private function removeTables(SchemaSetupInterface $setup)
+    {	
+        $tableName = 'faonni_price_round_rule';
+        if ($setup->tableExists($tableName)) {			
+            $setup->getConnection()->dropTable($setup->getTable($tableName));
+		}
+    }
+    
     /**
      * Remove Config
      *
