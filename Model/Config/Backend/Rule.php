@@ -4,10 +4,17 @@
  * 
  * See COPYING.txt for license details.
  */
-namespace Magento\OfflineShipping\Model\Config\Backend;
+namespace Faonni\Price\Model\Config\Backend;
 
+use Magento\Framework\Registry;
 use Magento\Framework\App\Config\Value;
+use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Framework\App\Cache\TypeListInterface;
+use Magento\Framework\Data\Collection\AbstractDb;
 use Magento\Framework\Model\AbstractModel;
+use Magento\Framework\Model\ResourceModel\AbstractResource;
+use Magento\Framework\Model\Context;
+use Faonni\Price\Model\ResourceModel\Round\RuleFactory;
 
 /**
  * Import Backend
@@ -15,31 +22,35 @@ use Magento\Framework\Model\AbstractModel;
 class Rule extends Value
 {
     /**
-     * @var \Magento\OfflineShipping\Model\ResourceModel\Carrier\TablerateFactory
+     * Rule Factory
+     *	
+     * @var \Faonni\Price\Model\ResourceModel\Round\RuleFactory
      */
-    protected $_tablerateFactory;
+    protected $_ruleFactory;
 
     /**
-     * @param \Magento\Framework\Model\Context $context
-     * @param \Magento\Framework\Registry $registry
-     * @param \Magento\Framework\App\Config\ScopeConfigInterface $config
-     * @param \Magento\Framework\App\Cache\TypeListInterface $cacheTypeList
-     * @param \Magento\OfflineShipping\Model\ResourceModel\Carrier\TablerateFactory $tablerateFactory
-     * @param \Magento\Framework\Model\ResourceModel\AbstractResource|null $resource
-     * @param \Magento\Framework\Data\Collection\AbstractDb|null $resourceCollection
+     * Initialize Import Backend
+     * 
+     * @param Context $context
+     * @param Registry $registry
+     * @param ScopeConfigInterface $config
+     * @param TypeListInterface $cacheTypeList
+     * @param RuleFactory $ruleFactory
+     * @param AbstractResource|null $resource
+     * @param AbstractDb|null $resourceCollection
      * @param array $data
      */
     public function __construct(
-        \Magento\Framework\Model\Context $context,
-        \Magento\Framework\Registry $registry,
-        \Magento\Framework\App\Config\ScopeConfigInterface $config,
-        \Magento\Framework\App\Cache\TypeListInterface $cacheTypeList,
-        \Magento\OfflineShipping\Model\ResourceModel\Carrier\TablerateFactory $tablerateFactory,
-        \Magento\Framework\Model\ResourceModel\AbstractResource $resource = null,
-        \Magento\Framework\Data\Collection\AbstractDb $resourceCollection = null,
+        Context $context,
+        Registry $registry,
+        ScopeConfigInterface $config,
+        TypeListInterface $cacheTypeList,
+        RuleFactory $ruleFactory,
+        AbstractResource $resource = null,
+        AbstractDb $resourceCollection = null,
         array $data = []
     ) {
-        $this->_tablerateFactory = $tablerateFactory;
+        $this->_ruleFactory = $ruleFactory;
         
         parent::__construct(
 			$context, 
@@ -53,13 +64,16 @@ class Rule extends Value
     }
 
     /**
+     * Processing Object After Save Data
+     *
      * @return $this
      */
     public function afterSave()
     {
-        /** @var \Magento\OfflineShipping\Model\ResourceModel\Carrier\Tablerate $tableRate */
-        $tableRate = $this->_tablerateFactory->create();
-        $tableRate->uploadAndImport($this);
+        /** @var \Faonni\Price\Model\ResourceModel\Round\Rule $rule */
+        $rule = $this->_ruleFactory->create();
+        $rule->uploadAndImport($this);
+        
         return parent::afterSave();
     }
 }
