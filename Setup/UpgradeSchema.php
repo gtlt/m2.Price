@@ -62,11 +62,11 @@ class UpgradeSchema implements UpgradeSchemaInterface
                     'Rule Id'
                 )
 				->addColumn(
-					'website_id',
+					'store_id',
 					Table::TYPE_SMALLINT,
 					null,
 					['unsigned' => true],
-					'Website Id'
+					'Store Id'
 				)                
 				->addColumn(
 					'min_amount',
@@ -143,14 +143,14 @@ class UpgradeSchema implements UpgradeSchemaInterface
 					['position']
 				)	
 				->addIndex(
-					$installer->getIdxName($tableName, ['website_id']),
-					['website_id']
+					$installer->getIdxName($tableName, ['store_id']),
+					['store_id']
 				)	
 				->addForeignKey(
-					$installer->getFkName($tableName, 'website_id', 'store_website', 'website_id'),
-					'website_id',
-					$installer->getTable('store_website'),
-					'website_id',
+					$installer->getFkName($tableName, 'store_id', 'store', 'store_id'),
+					'store_id',
+					$installer->getTable('store'),
+					'store_id',
 					Table::ACTION_CASCADE
 				)				
 				->setComment(

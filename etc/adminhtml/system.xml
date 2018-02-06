@@ -33,7 +33,15 @@
 					<depends>
 						<field id="enabled">1</field>
 					</depends>					
-                </field>  				
+                </field> 
+                <field id="export" translate="label" type="Faonni\Price\Block\Adminhtml\Form\Field\Export" sortOrder="17" showInDefault="0" showInWebsite="1" showInStore="0">
+                    <label>Export</label>
+                </field>
+                <field id="import" translate="label" type="Faonni\Price\Block\Adminhtml\Form\Field\Import" sortOrder="18" showInDefault="0" showInWebsite="1" showInStore="0">
+                    <label>Import</label>
+                    <backend_model>Faonni\Price\Model\Config\Backend\Rule</backend_model>
+                </field>				
+				
                 <field id="type" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Rounding Type</label>
                     <comment><![CDATA[Round fractions up or Round fractions down.]]></comment>
