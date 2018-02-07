@@ -24,5 +24,16 @@ class Collection extends AbstractCollection
 			'Faonni\Price\Model\Round\Rule', 
 			'Faonni\Price\Model\ResourceModel\Round\Rule'
 		);	
-    }                
+    } 
+    
+    /**
+     * Add Store Filter To Collection
+     *
+     * @param array $storeIds
+     * @return \Faonni\Price\Model\ResourceModel\Round\Rule\Collection
+     */
+    public function setStoreFilter(array $storeIds)
+    {
+        return $this->addFieldToFilter('store_id', ['in' => $storeIds]);
+    }    
 }

@@ -101,14 +101,14 @@ class UpgradeSchema implements UpgradeSchemaInterface
 					Table::TYPE_SMALLINT,
 					null,
 					['unsigned' => true],
-					'Subtract Amount'
+					'Subtract'
 				) 				
 				->addColumn(
 					'amount',
 					Table::TYPE_DECIMAL,
 					'12,4',
 					[],
-					'Amount'
+					'Subtract Amount'
 				) 
 				->addColumn(
 					'precision',

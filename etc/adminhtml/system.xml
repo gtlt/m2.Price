@@ -34,10 +34,10 @@
 						<field id="enabled">1</field>
 					</depends>					
                 </field> 
-                <field id="export" translate="label" type="Faonni\Price\Block\Adminhtml\Form\Field\Export" sortOrder="17" showInDefault="0" showInWebsite="1" showInStore="0">
+                <field id="export" translate="label" type="Faonni\Price\Block\Adminhtml\Form\Field\Export" sortOrder="17" showInDefault="0" showInWebsite="1" showInStore="1">
                     <label>Export</label>
                 </field>
-                <field id="import" translate="label" type="Faonni\Price\Block\Adminhtml\Form\Field\Import" sortOrder="18" showInDefault="0" showInWebsite="1" showInStore="0">
+                <field id="import" translate="label" type="Faonni\Price\Block\Adminhtml\Form\Field\Import" sortOrder="18" showInDefault="0" showInWebsite="1" showInStore="1">
                     <label>Import</label>
                     <backend_model>Faonni\Price\Model\Config\Backend\Rule</backend_model>
                 </field>				
