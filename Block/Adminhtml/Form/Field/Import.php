@@ -23,4 +23,15 @@ class Import extends AbstractElement
         parent::_construct();
         $this->setType('file');
     }
+    
+    /**
+     * Retrieve Element Html
+     *
+     * @return string
+     */
+    public function getElementHtml()
+    {
+        $html = '<input id="time_condition" type="hidden" name="' . $this->getName() . '" value="' . time() . '" />';
+        return $html . parent::getElementHtml();
+    }    
 }
