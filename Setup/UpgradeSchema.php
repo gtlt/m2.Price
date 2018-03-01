@@ -81,14 +81,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
 					'12,4',
 					[],
 					'Max Amount'
-				)                 
-				->addColumn(
-					'enabled',
-					Table::TYPE_SMALLINT,
-					null,
-					['unsigned' => true],
-					'Enabled'
-				) 
+				)   
 				->addColumn(
                     'type',
                     Table::TYPE_TEXT,
@@ -116,14 +109,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
 					null,
 					[],
 					'Precision'
-				) 	
-				->addColumn(
-					'show_decimal_zero',
-					Table::TYPE_SMALLINT,
-					null,
-					['unsigned' => true],
-					'Show Decimal Zeros'
-				) 				
+				) 					
 				->addColumn(
 					'swedish_fraction',
 					Table::TYPE_DECIMAL,
@@ -132,15 +118,15 @@ class UpgradeSchema implements UpgradeSchemaInterface
 					'Swedish Fraction'
 				) 
 				->addColumn(
-					'position',
+					'status',
 					Table::TYPE_SMALLINT,
 					null,
 					['unsigned' => true],
-					'Position'
+					'Status'
 				) 				
 				->addIndex(
-					$installer->getIdxName($tableName, ['position']),
-					['position']
+					$installer->getIdxName($tableName, ['status']),
+					['status']
 				)	
 				->addIndex(
 					$installer->getIdxName($tableName, ['store_id']),
